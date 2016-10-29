@@ -11,7 +11,7 @@ for (var i = 0; i < 10; i++) {
   gridData.push(rowData);
 }
 
-gridData[0][0].content = 'player';
+// gridData[0][0].content = 'player';
 
 // GOAL
 gridData[9][4].content = 'goal';

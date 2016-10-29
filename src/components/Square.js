@@ -14,9 +14,9 @@ const styles = {
 
 const Square = React.createClass({
   render () {
-    const {col, row, content} = this.props.squareData;
+    const {content} = this.props.squareData;
     return (
-      <div style={styles.square} className={classnames(content)}></div>
+      <div style={styles.square} className={classnames(content, 'square')}></div>
     );
   }
 });

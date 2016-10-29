@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import Grid from './components/Grid';
+import Board from './components/Board';
 
-class App extends Component {
+const App = React.createClass({
   render () {
     return (
       <div className='App'>
-        <Grid />
+        <Board />
       </div>
     );
   }
-}
+});
 
 export default App;
