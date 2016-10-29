@@ -1,24 +1,51 @@
-import React from 'react'
-import classnames from 'classnames'
+import React from 'react';
+import {connect} from 'react-redux'
+import classnames from 'classnames';
+
+import {movePlayer} from '../actions/player.actions';
 
 require('./Square.css');
 
-const styles = {
-  square: {
-    display: 'inline-block',
-    width: '50px',
-    height: '50px',
-    border: '1px solid black'
-  }
-};
-
 const Square = React.createClass({
   render () {
-    const {content} = this.props.squareData;
+    const {isPlayerHere, squareData} = this.props,
+      {content} = squareData;
     return (
-      <div style={styles.square} className={classnames(content, 'square')}></div>
+      <div
+        className={classnames('square', content)}
+        onClick={this.getHandler()}
+      >
+        {isPlayerHere && <div className='player' />}
+      </div>
     );
+  },
+  getHandler () {
+    const {row, col, squareData} = this.props;
+    const {content} = squareData;
+    switch (content) {
+      case undefined:
+        return this.props.movePlayer.bind(null, row, col);
+      default:
+        return () => {};
+    }
   }
 });
 
-export default Square;
+function mapStateToProps ({player}, ownProps) {
+  const isPlayerHere = player.row === ownProps.row &&
+      player.col === ownProps.col;
+  return {
+    isPlayerHere
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    movePlayer (row, col) {
+      dispatch(movePlayer(row, col));
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Square);
