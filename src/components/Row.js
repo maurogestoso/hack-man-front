@@ -2,22 +2,26 @@ import React from 'react';
 
 import Square from './Square';
 
-const styles = {
-  row: {
-
-  }
-};
-
 const Row = React.createClass({
   render () {
     return (
-      <div style={styles.row}>
-        {this.props.rowData.map((squareData, i) => {
-          return <Square key={i} squareData={squareData} />
-        })}
+      <div className='row'>
+        {this.renderSquares()}
       </div>
     );
+  },
+  renderSquares () {
+    return this.props.rowData.map((squareData, i) => {
+      const row = this.props.row, col = i;
+      return <Square
+        key={i}
+        col={col}
+        row={row}
+        squareData={squareData}
+      />
+    });
   }
 });
+
 
 export default Row;
