@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import classnames from 'classnames';
 
-import {movePlayer, takeItem} from '../actions/index';
+import {movePlayer, takeItem, dropItem} from '../actions/index';
 
 require('./Square.css');
 
@@ -29,6 +29,9 @@ const Square = React.createClass({
       case 'shelf': {
         return this.props.takeItem.bind(null, item)
       }
+      case 'goal': {
+        return this.props.dropItem.bind(null, item)
+      }
       case undefined:
         return this.props.movePlayer.bind(null, row, col);
       default:
@@ -52,6 +55,9 @@ function mapDispatchToProps (dispatch) {
     },
     takeItem (item) {
       dispatch(takeItem(item));
+    },
+    dropItem (item) {
+      dispatch(dropItem(item));
     }
   }
 }
