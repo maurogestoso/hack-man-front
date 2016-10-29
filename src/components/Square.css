@@ -1,0 +1,15 @@
+.player {
+    background-color: black;
+}
+
+.obstacle {
+    background-color: red;
+}
+
+.shelf {
+    background-color: cornflowerblue;
+}
+
+.goal {
+    background-color: pink;
+}
