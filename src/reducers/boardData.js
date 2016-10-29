@@ -6,13 +6,15 @@ for (var i = 0; i < 10; i++) {
     rowData.push({
       row: i,
       col: j,
-      active: false
+      active: false,
+      content: 'empty'
     });
   }
   gridData.push(rowData);
 }
 
-// gridData[0][0].content = 'player';
+gridData[0][0].content = 'playerA';
+gridData[0][9].content = 'playerB';
 
 // INITIAL ACTIVE SQUARES
 gridData[0][0].active = true;

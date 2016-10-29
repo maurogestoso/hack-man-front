@@ -10,11 +10,12 @@
     outline: 5px solid limegreen;
 }
 
-.player {
-    border-radius: 50%;
+.playerA {
     background-color: tomato;
-    width: 48px;
-    height: 48px;
+}
+
+.playerB {
+    background-color: blueviolet;
 }
 
 .obstacle {

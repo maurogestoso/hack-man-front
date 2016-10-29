@@ -8,7 +8,8 @@ const board = (prevBoard = initialBoard, action) => {
       const newBoard = prevBoard.map((rowData) => {
         return rowData.map((squareData) => {
           return Object.assign({}, squareData, {
-            active: false
+            active: false,
+            content: squareData.content === 'playerA' ? 'empty' : squareData.content
           });
         });
       });
@@ -22,9 +23,10 @@ const board = (prevBoard = initialBoard, action) => {
         const currCol = action.payload.col + mod.col;
         if((currRow >= 0 && currRow < prevBoard.length) &&
           (currCol >= 0 && currCol < prevBoard.length)) {
-          newBoard[currRow][currCol].active = true;
+          newBoard[currRow][currCol].active = newBoard[currRow][currCol].content !== 'playerB';
         }
       });
+      newBoard[action.payload.row][action.payload.col].content = 'playerA';
       return newBoard;
     }
     default:
