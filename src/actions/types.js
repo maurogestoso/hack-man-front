@@ -1,1 +1,3 @@
 export const MOVE_PLAYER = 'MOVE_PLAYER';
+
+export const UPDATE_ACTIVE_SQUARES = 'UPDATE_ACTIVE_SQUARES';

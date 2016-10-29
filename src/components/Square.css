@@ -2,7 +2,12 @@
     display: inline-block;
     width: 64px;
     height: 64px;
-    border: 1px solid black;
+    outline: 5px solid black;
+    margin: 4px
+}
+
+.square.active {
+    outline: 5px solid limegreen;
 }
 
 .player {

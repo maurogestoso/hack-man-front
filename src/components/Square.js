@@ -2,17 +2,17 @@ import React from 'react';
 import {connect} from 'react-redux'
 import classnames from 'classnames';
 
-import {movePlayer} from '../actions/player.actions';
+import {movePlayer} from '../actions/index';
 
 require('./Square.css');
 
 const Square = React.createClass({
   render () {
     const {isPlayerHere, squareData} = this.props,
-      {content} = squareData;
+      {content, active} = squareData;
     return (
       <div
-        className={classnames('square', content)}
+        className={classnames('square', content, {'active': active})}
         onClick={this.getHandler()}
       >
         {isPlayerHere && <div className='player' />}
@@ -21,7 +21,10 @@ const Square = React.createClass({
   },
   getHandler () {
     const {row, col, squareData} = this.props;
-    const {content} = squareData;
+    const {content, active} = squareData;
+    if (!active) {
+      return () => {};
+    }
     switch (content) {
       case undefined:
         return this.props.movePlayer.bind(null, row, col);
