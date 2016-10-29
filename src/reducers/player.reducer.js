@@ -1,4 +1,4 @@
-import {MOVE_PLAYER} from '../actions/types';
+import {MOVE_PLAYER, TAKE_ITEM} from '../actions/types';
 
 const initialState = {
   id: '001',
@@ -15,6 +15,11 @@ const players = (prevState = initialState, action) => {
       const {row, col} = action.payload;
       return Object.assign({}, prevState, {
         row, col
+      });
+    }
+    case (TAKE_ITEM): {
+      return Object.assign({}, prevState, {
+        item: action.payload
       });
     }
     default:
