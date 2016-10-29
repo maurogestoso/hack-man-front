@@ -1,13 +1,4 @@
-import {MOVE_PLAYER, UPDATE_ACTIVE_SQUARES} from './types';
-
-export const updateActiveSquares = (row, col) => {
-  return {
-    type: UPDATE_ACTIVE_SQUARES,
-    payload: {
-      row, col
-    }
-  };
-};
+import {MOVE_PLAYER, TAKE_ITEM} from './types';
 
 export const movePlayer = (row, col) => {
   return {
@@ -16,4 +7,11 @@ export const movePlayer = (row, col) => {
       row, col
     }
   }
+};
+
+export const takeItem = (item) => {
+  return {
+    type: TAKE_ITEM,
+    payload: item
+  };
 };
