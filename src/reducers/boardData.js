@@ -5,13 +5,19 @@ for (var i = 0; i < 10; i++) {
   for (var j = 0; j < 10; j++) {
     rowData.push({
       row: i,
-      col: j
+      col: j,
+      active: false
     });
   }
   gridData.push(rowData);
 }
 
 // gridData[0][0].content = 'player';
+
+// INITIAL ACTIVE SQUARES
+gridData[0][0].active = true;
+gridData[0][1].active = true;
+gridData[1][0].active = true;
 
 // GOAL
 gridData[9][4].content = 'goal';
