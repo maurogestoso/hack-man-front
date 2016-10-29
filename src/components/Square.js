@@ -8,15 +8,13 @@ require('./Square.css');
 
 const Square = React.createClass({
   render () {
-    const {isPlayerHere, squareData} = this.props,
+    const {squareData} = this.props,
       {content, active} = squareData;
     return (
       <div
         className={classnames('square', content, {'active': active})}
         onClick={this.getHandler()}
-      >
-        {isPlayerHere && <div className='player' />}
-      </div>
+      />
     );
   },
   getHandler () {
@@ -32,7 +30,7 @@ const Square = React.createClass({
       case 'goal': {
         return this.props.dropItem.bind(null, item)
       }
-      case undefined:
+      case 'empty':
         return this.props.movePlayer.bind(null, row, col);
       default:
         return () => {};
@@ -40,12 +38,8 @@ const Square = React.createClass({
   }
 });
 
-function mapStateToProps ({player}, ownProps) {
-  const isPlayerHere = player.row === ownProps.row &&
-      player.col === ownProps.col;
-  return {
-    isPlayerHere
-  };
+function mapStateToProps (state) {
+  return {};
 }
 
 function mapDispatchToProps (dispatch) {
