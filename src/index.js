@@ -12,6 +12,7 @@ import Waiting from './components/Waiting';
 import Thanks from './components/Thanks';
 import NotYourTurn from './components/NotYourTurn';
 import Join from './components/Join';
+import EndGame from './components/EndGame';
 import './index.css';
 
 import reducer from './reducers/index';
@@ -30,6 +31,7 @@ ReactDOM.render(
       <Route path='/thanks' component={Thanks} />
       <Route path='/notyourturn' component={NotYourTurn} />
       <Route path='/join' component={Join} />
+      <Route path='/endgame' component={EndGame} />
     </Router>
   </Provider>,
   document.getElementById('root')

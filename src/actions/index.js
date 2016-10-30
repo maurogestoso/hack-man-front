@@ -220,3 +220,33 @@ export const endTurn = (game, gameId) => {
       });
   };
 };
+
+export const endGame = (gameId, username) => {
+  return (dispatch) => {
+    dispatch({type: types.DELETE_GAME_REQUEST});
+    return axios.delete(`${LOCAL_API}/api/games/${gameId}`)
+      .then(({data}) => {
+        dispatch({type: types.DELETE_GAME_SUCCESS, payload: data});
+        dispatch(fetchUserProfile(username));
+      })
+      .catch(({err}) => {
+        dispatch({type: types.DELETE_GAME_ERROR, payload: err});
+      });
+  }
+};
+
+export const forceEndGame = () => {
+  return {type: types.FORCE_END_GAME};
+};
+
+export const fetchUserProfile = (username) => {
+  return (dispatch) => {
+    return axios.get(`${LOCAL_API}/api/users/${username}`)
+      .then(({data}) => {
+        dispatch(receiveUser(data));
+      })
+      .catch(({error}) => {
+        console.log(error);
+      });
+  }
+}

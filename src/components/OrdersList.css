@@ -1,0 +1,9 @@
+.orders-list {
+    display: flex;
+}
+
+.order {
+    border: 1px solid rgb(0, 159, 202);
+    padding: 10px;
+    margin-right: 20px;
+}
