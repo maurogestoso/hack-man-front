@@ -241,8 +241,10 @@ export const forceEndGame = () => {
 
 export const fetchUserProfile = (username) => {
   return (dispatch) => {
+    console.log('&&&&&&&&&&&&&&&&&&&&&&&&&', username);
     return axios.get(`${LOCAL_API}/api/users/${username}`)
       .then(({data}) => {
+        console.log(data);
         dispatch(receiveUser(data));
       })
       .catch(({error}) => {

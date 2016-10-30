@@ -1,10 +1,11 @@
 .square {
     display: inline-block;
-    width: 64px;
-    height: 64px;
+    width: 70px;
+    height: 70px;
     outline: 5px solid black;
     margin: 4px
 }
+
 
 .square.active {
     outline: 5px solid limegreen;

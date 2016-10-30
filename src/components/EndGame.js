@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 import {endGame} from '../actions/index';
 
@@ -16,11 +17,12 @@ const EndGame = React.createClass({
           {this.props.friends.map((friend) => {
             return (
               <div>
-                <h4>{friend}</h4>
+                <h4>{friend.username}</h4>
               </div>
             )
           })}
         </div>
+        <Link to='/'>Back</Link>
       </div>
     );
   }
@@ -36,8 +38,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    endGame (gameId) {
-      dispatch(endGame(gameId));
+    endGame (gameId, username) {
+      dispatch(endGame(gameId, username));
     }
   };
 }

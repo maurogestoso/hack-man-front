@@ -13,8 +13,8 @@ const Square = React.createClass({
     return (
       <div
         className={classnames('square', content, {'active': active})}
-        onClick={this.getHandler()}
-      />
+        onClick={this.getHandler()}>
+      </div>
     );
   },
   getHandler () {
