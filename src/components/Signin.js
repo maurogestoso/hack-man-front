@@ -38,29 +38,37 @@ const Signin = React.createClass({
   },
   render () {
     return (
-      <div>
-        <h3>Already played before?</h3>
-        <form onSubmit={this.signIn}>
-          <label>username</label>
-          <input type='text' onChange={this.updateUsername} />
-          <button type='submit'>
-            Continue game!
-          </button>
-        </form>
-        <h3>New?</h3>
-        <form onSubmit={this.signUp}>
-          <label>username</label>
-          <input type='text' onChange={this.updateUsername} />
-          <label>name</label>
-          <input type='text' onChange={this.updateName} />
-          <label>interests</label>
-          <input type='text' onChange={this.updateInterests} />
-          <label>age</label>
-          <input type='text' onChange={this.updateAge} />
-          <button type='submit'>
-            Let's go!
-          </button>
-        </form>
+      <div className="signin-container">
+        <div className="already-played-container">
+          <h3 className="played-before-title">Already played before?</h3>
+          <form onSubmit={this.signIn}>
+            <input type='text' onChange={this.updateUsername} placeholder="Username" />
+            <button className="signin-button continue-game" type='submit'>
+              Continue game!
+            </button>
+          </form>
+        </div>
+
+
+
+        <div className="new-container">
+          <h3 className="new-title">New?</h3>
+          <form onSubmit={this.signUp}>
+
+            <input type='text' onChange={this.updateUsername} placeholder="Username"/> <br />
+
+            <input placeholder="Name" type='text' onChange={this.updateName} /> <br />
+
+            <input placeholder="Interests" type='text' onChange={this.updateInterests} /> <br />
+
+            <input placeholder="Age" type='text' onChange={this.updateAge} /> <br />
+            <button className="signin-button lets-go" type='submit'>
+              Let's go!
+            </button>
+          </form>
+        </div>
+
+
       </div>
     );
   }
