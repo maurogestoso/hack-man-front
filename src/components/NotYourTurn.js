@@ -1,9 +1,13 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 const NotYourTurn = React.createClass({
   render () {
     return (
-      <h1>It's not your turn yet! Come back soon!</h1>
+      <div>
+        <h1>It's not your turn yet! Come back soon!</h1>
+        <Link to='/'>Back home</Link>
+      </div>
     )
   }
 });
