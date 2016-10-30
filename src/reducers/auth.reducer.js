@@ -30,6 +30,10 @@ const reducer = (prevState = initialState, action) => {
     newState.signinError = action.err;
   }
 
+  if (action.type === types.ADD_GAME_TO_USER) {
+    newState.user.gameId = action.gameId;
+  }
+
   return newState;
 };
 

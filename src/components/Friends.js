@@ -14,7 +14,8 @@ const Friends = React.createClass({
   render () {
     return (
       <div>
-        <h3>You have collected {this.props.friends.length} friends</h3>
+        <h3>You have met {this.props.friends.length} out of 13 people who shop at this store and play this game.</h3>
+        {this.props.friends.length && <h2>You've met:</h2>}
         {this.renderFriends(this.props.friends)}
       </div>
     );
@@ -23,7 +24,7 @@ const Friends = React.createClass({
 
 const mapStateToProps = (state) => {
   return {
-    friends: state.auth.user.friends
+    friends: state.auth.user.friends || []
   };
 };
 

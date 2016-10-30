@@ -92,6 +92,54 @@ export const receiveGamesError = (err) => {
   };
 };
 
+export const addGameToUser = (gameId) => {
+  return {
+    type: types.ADD_GAME_TO_USER,
+    gameId
+  }
+}
+
+export const joinGame = (player, gameId) => {
+  return (dispatch) => {
+    return axios.post(`${LOCAL_API}/api/games/join`, {playerB: player, gameId})
+      .then(req => {
+        dispatch(receiveGame(req.data));
+        dispatch(addGameToUser(gameId));
+        browserHistory.push('/play');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+
+export const createGame = (player) => {
+  return (dispatch) => {
+    return axios.post(`${LOCAL_API}/api/games/new`, {player})
+      .then(req => {
+        dispatch(receiveGame(req.data));
+        browserHistory.push('/play');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+
+export const signUp = (user) => {
+  return (dispatch) => {
+    return axios.post(`${LOCAL_API}/api/users/${user.username}`, user)
+      .then(req => {
+        dispatch(receiveUser(req.data));
+        dispatch(fetchAvailableGames());
+        browserHistory.push('/join');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+};
+
 export const fetchAvailableGames = () => {
   return (dispatch) => {
     dispatch(requestGames());

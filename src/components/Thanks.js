@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 const Thanks = React.createClass({
   render () {
@@ -10,6 +11,7 @@ const Thanks = React.createClass({
         <h2>
           Come back soon to play again :)
         </h2>
+        <Link to='/'>Back home</Link>
       </div>
     );
   }
