@@ -8,8 +8,6 @@ const initialState = {
   actions: 15
 };
 
-
-
 const players = (prevState = initialState, action) => {
   switch (action.type) {
     case (MOVE_PLAYER): {

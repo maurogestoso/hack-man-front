@@ -10,11 +10,11 @@
     outline: 5px solid limegreen;
 }
 
-.playerA {
+.currentPlayer {
     background-color: tomato;
 }
 
-.playerB {
+.otherPlayer {
     background-color: blueviolet;
 }
 
