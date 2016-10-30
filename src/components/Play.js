@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Board from './Board';
 import Sidebar from './Sidebar';
+import Friends from './Friends';
 
 const Play = React.createClass({
   render () {
@@ -9,6 +10,7 @@ const Play = React.createClass({
       <div className='App'>
         <Sidebar />
         <Board />
+        <Friends />
       </div>
     );
   }
