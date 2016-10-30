@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
-import {endTurn} from '../actions';
+import {endTurn, forceEndGame, endGame} from '../actions';
+
+import OrdersList from './OrdersList';
 
 function swapPlayers (board) {
   return board.map(row => {
@@ -19,14 +21,16 @@ function swapPlayers (board) {
 
 const Sidebar = React.createClass({
   componentWillReceiveProps (next) {
+    const {game, board, gameId} = this.props;
     if (!next.actions) {
       browserHistory.push('/thanks');
-      const {game, board, gameId} = this.props;
       const turn = game.turn === 'playerA' ? 'playerB' : 'playerA';
       const turnsTaken = game.turnsTaken ? ++game.turnsTaken : 1;
       const newBoard = swapPlayers(board);
       const gameData = Object.assign(game, {board: newBoard, turn, turnsTaken});
       this.props.endTurn(gameData, gameId);
+    } else if (!next.game.orders.length) {
+      browserHistory.push('/endgame');
     }
   },
   render () {
@@ -39,9 +43,14 @@ const Sidebar = React.createClass({
         </h3>
         <h3>Actions: {this.props.actions} / 15</h3>
         <h3>Holding: {this.props.item || 'Nothing'}</h3>
+        <OrdersList data={this.props.game.orders}/>
+        <button onClick={this.forceEndGame}>Force End Game</button>
       </div>
     );
   },
+  forceEndGame () {
+    browserHistory.push('/endgame');
+  }
 });
 
 function mapStateToProps (state) {
@@ -55,10 +64,13 @@ function mapStateToProps (state) {
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps (dispatch, ownProps) {
   return {
     endTurn (gameData, gameId) {
       dispatch(endTurn(gameData, gameId));
+    },
+    endGame () {
+      dispatch(endGame(ownProps.gameId))
     }
   };
 }

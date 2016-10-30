@@ -18,7 +18,7 @@ const Square = React.createClass({
     );
   },
   getHandler () {
-    const {row, col, squareData, movesRemaining, game, board, gameId} = this.props;
+    const {row, col, squareData, movesRemaining, heldItem} = this.props;
     const {content, active, item} = squareData;
     if (!active) {
       return () => {};
@@ -31,7 +31,7 @@ const Square = React.createClass({
         return this.props.takeItem.bind(null, item)
       }
       case 'goal': {
-        return this.props.dropItem.bind(null, item)
+        return this.props.dropItem.bind(null, heldItem)
       }
       case 'empty':
         return this.props.movePlayer.bind(null, row, col);
@@ -43,6 +43,7 @@ const Square = React.createClass({
 
 function mapStateToProps (state) {
   return {
+    heldItem: state.player.item,
     movesRemaining: state.player.actions,
     game: state.game,
     board: state.board,

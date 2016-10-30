@@ -1,7 +1,12 @@
+// PLAYER ACTIONS
 export const MOVE_PLAYER = 'MOVE_PLAYER';
 export const TAKE_ITEM = 'TAKE_ITEM';
 export const DROP_ITEM = 'DROP_ITEM';
 export const DECREASE_ACTIONS = 'DECREASE_ACTIONS';
+export const END_GAME = 'END_GAME';
+export const FORCE_END_GAME = 'FORCE_END_GAME'; // dev shortcut
+
+// NETWORK STUFF
 export const REQUEST_USER = 'REQUEST_USER';
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const SIGN_IN_ERROR = 'SIGN_IN_ERROR';
@@ -12,3 +17,6 @@ export const REQUEST_GAMES = 'REQUEST_GAMES';
 export const RECEIVE_GAMES = 'RECEIVE_GAMES';
 export const RECEIVE_GAMES_ERROR = 'RECEIVE_GAMES_ERROR';
 export const ADD_GAME_TO_USER = 'ADD_GAME_TO_USER';
+export const DELETE_GAME_REQUEST = 'DELETE_GAME_REQUEST';
+export const DELETE_GAME_SUCCESS = 'DELETE_GAME_SUCCESS';
+export const DELETE_GAME_ERROR = 'DELETE_GAME_ERROR';
