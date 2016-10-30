@@ -1,4 +1,4 @@
-import {MOVE_PLAYER, TAKE_ITEM, DROP_ITEM} from './types';
+import {MOVE_PLAYER, TAKE_ITEM, DROP_ITEM, DECREASE_ACTIONS} from './types';
 
 export const movePlayer = (row, col) => {
   return {
@@ -21,4 +21,10 @@ export const dropItem = (item) => {
     type: DROP_ITEM,
     payload: item
   };
+};
+
+export const decreaseActions = () => {
+  return {
+    type: DECREASE_ACTIONS
+  }
 };

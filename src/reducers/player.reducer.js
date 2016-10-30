@@ -1,10 +1,11 @@
-import {MOVE_PLAYER, TAKE_ITEM, DROP_ITEM} from '../actions/types';
+import {MOVE_PLAYER, TAKE_ITEM, DROP_ITEM, DECREASE_ACTIONS} from '../actions/types';
 
 const initialState = {
   id: '001',
   row: 0,
   col: 0,
-  item: ''
+  item: '',
+  actions: 15
 };
 
 
@@ -25,6 +26,11 @@ const players = (prevState = initialState, action) => {
     case (DROP_ITEM): {
       return Object.assign({}, prevState, {
         item: undefined
+      });
+    }
+    case (DECREASE_ACTIONS): {
+      return Object.assign({}, prevState, {
+        actions: prevState.actions - 1
       });
     }
     default:

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import classnames from 'classnames';
 
-import {movePlayer, takeItem, dropItem} from '../actions/index';
+import {movePlayer, takeItem, dropItem, decreaseActions} from '../actions/index';
 
 require('./Square.css');
 
@@ -46,6 +46,7 @@ function mapDispatchToProps (dispatch) {
   return {
     movePlayer (row, col) {
       dispatch(movePlayer(row, col));
+      dispatch(decreaseActions());
     },
     takeItem (item) {
       dispatch(takeItem(item));
