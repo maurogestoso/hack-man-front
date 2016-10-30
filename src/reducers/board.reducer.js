@@ -1,10 +1,10 @@
 import initialBoard from './boardData';
 
-import {MOVE_PLAYER} from '../actions/types';
+import * as types from '../actions/types';
 
 const board = (prevBoard = initialBoard, action) => {
   switch (action.type) {
-    case (MOVE_PLAYER): {
+    case (types.MOVE_PLAYER): {
       const newBoard = prevBoard.map((rowData) => {
         return rowData.map((squareData) => {
           return Object.assign({}, squareData, {
@@ -28,6 +28,9 @@ const board = (prevBoard = initialBoard, action) => {
       });
       newBoard[action.payload.row][action.payload.col].content = 'playerA';
       return newBoard;
+    }
+    case (types.RECEIVE_GAME): {
+      return action.game.board;
     }
     default:
       return prevBoard;
