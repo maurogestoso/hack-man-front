@@ -1,0 +1,10 @@
+.friends-list {
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.friend {
+    border: 2px solid rgb(0, 160, 204);
+}

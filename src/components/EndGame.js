@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
 import {endGame} from '../actions/index';
+import './EndGame.css'
 
 const EndGame = React.createClass({
   componentWillMount () {
@@ -16,8 +17,10 @@ const EndGame = React.createClass({
         <div className='friends-list'>
           {this.props.friends.map((friend) => {
             return (
-              <div>
-                <h4>{friend.username}</h4>
+              <div className='friend'>
+                <h4>{friend.name}</h4>
+                <p>Age: {friend.age}</p>
+                <p>Interests: {friend.interests}</p>
               </div>
             )
           })}
