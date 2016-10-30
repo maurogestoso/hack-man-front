@@ -106,7 +106,7 @@ export const fetchAvailableGames = () => {
   };
 };
 
-export const fetchGame = (gameId) => {
+export const fetchGame = (gameId, username) => {
   return (dispatch) => {
     dispatch(requestGame());
     return axios.get(`${LOCAL_API}/api/games/${gameId}`)
@@ -114,7 +114,20 @@ export const fetchGame = (gameId) => {
         dispatch(receiveGame(res.data));
         if (!res.data.playerB) {
           browserHistory.push('/waiting');
+        } else if (res.data[res.data.turn] !== username) {
+          browserHistory.push('/notyourturn');
         } else {
+          const position = {};
+          console.log(res.data.board);
+          res.data.board.forEach((row, i) => {
+            row.forEach((cell, j) => {
+              if (res.data.board[i][j].content === 'currentPlayer') {
+                position.row = i;
+                position.col = j;
+              }
+            });
+          });
+          dispatch(movePlayer(position.row, position.col));
           browserHistory.push('/play');
         }
       })
@@ -132,7 +145,7 @@ export const signIn = (username) => {
       .then(res => {
         dispatch(receiveUser(res.data));
         if (res.data.gameId) {
-          dispatch(fetchGame(res.data.gameId));
+          dispatch(fetchGame(res.data.gameId, username));
         }
         else {
           dispatch(fetchAvailableGames());
@@ -142,4 +155,20 @@ export const signIn = (username) => {
         dispatch(signInError(err));
       });
   }
+};
+
+export const endTurn = (game, gameId) => {
+  return (dispatch) => {
+    const url = `${LOCAL_API}/api/games/update`;
+    return axios.post(url, {
+      gameId,
+      game
+    })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 };

@@ -9,7 +9,7 @@ const board = (prevBoard = initialBoard, action) => {
         return rowData.map((squareData) => {
           return Object.assign({}, squareData, {
             active: false,
-            content: squareData.content === 'playerA' ? 'empty' : squareData.content
+            content: squareData.content === 'currentPlayer' ? 'empty' : squareData.content
           });
         });
       });
@@ -23,10 +23,10 @@ const board = (prevBoard = initialBoard, action) => {
         const currCol = action.payload.col + mod.col;
         if((currRow >= 0 && currRow < prevBoard.length) &&
           (currCol >= 0 && currCol < prevBoard.length)) {
-          newBoard[currRow][currCol].active = newBoard[currRow][currCol].content !== 'playerB';
+          newBoard[currRow][currCol].active = newBoard[currRow][currCol].content !== 'otherPlayer';
         }
       });
-      newBoard[action.payload.row][action.payload.col].content = 'playerA';
+      newBoard[action.payload.row][action.payload.col].content = 'currentPlayer';
       return newBoard;
     }
     case (types.RECEIVE_GAME): {

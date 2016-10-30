@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import classnames from 'classnames';
 
-import {movePlayer, takeItem, dropItem, decreaseActions} from '../actions/index';
+import {movePlayer, takeItem, dropItem, decreaseActions, endTurn} from '../actions/index';
 
 require('./Square.css');
 
@@ -18,9 +18,12 @@ const Square = React.createClass({
     );
   },
   getHandler () {
-    const {row, col, squareData} = this.props;
+    const {row, col, squareData, movesRemaining, game, board, gameId} = this.props;
     const {content, active, item} = squareData;
     if (!active) {
+      return () => {};
+    }
+    if (!movesRemaining) {
       return () => {};
     }
     switch (content) {
@@ -39,7 +42,12 @@ const Square = React.createClass({
 });
 
 function mapStateToProps (state) {
-  return {};
+  return {
+    movesRemaining: state.player.actions,
+    game: state.game,
+    board: state.board,
+    gameId: state.auth.user.gameId
+  };
 }
 
 function mapDispatchToProps (dispatch) {

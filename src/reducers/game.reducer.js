@@ -14,7 +14,7 @@ function reducer (prevState = initialState, action) {
     newState.playerA = action.game.playerA;
     newState.playerB = action.game.playerB;
     newState.score = action.game.score;
-    newState.turn = aciton.game.turn;  
+    newState.turn = action.game.turn;  
   }
 
   return newState;
