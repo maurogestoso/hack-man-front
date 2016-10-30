@@ -30,8 +30,10 @@ const Sidebar = React.createClass({
     }
   },
   render () {
+    const otherPlayer = this.props.game.playerA === this.props.currentPlayer ? this.props.game.playerB : this.props.game.playerA;
     return (
       <div className='sidebar'>
+        <h3>Hello, {this.props.currentPlayer}. You are currently playing with co-op member {otherPlayer}</h3>
         <h3>Actions: {this.props.actions} / 15</h3>
         <h3>Holding: {this.props.item || 'Nothing'}</h3>
       </div>
@@ -45,7 +47,8 @@ function mapStateToProps (state) {
     actions: state.player.actions,
     game: state.game,
     board: state.board,
-    gameId: state.auth.user.gameId
+    gameId: state.auth.user.gameId,
+    currentPlayer: state.auth.user.username
   };
 }
 
