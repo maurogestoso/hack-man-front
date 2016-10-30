@@ -1,4 +1,4 @@
-import {MOVE_PLAYER, TAKE_ITEM, DROP_ITEM, DECREASE_ACTIONS} from '../actions/types';
+import {MOVE_PLAYER, TAKE_ITEM, DROP_ITEM, DECREASE_ACTIONS, RESET_PLAYER} from '../actions/types';
 
 const initialState = {
   item: '',
@@ -26,6 +26,11 @@ const players = (prevState = initialState, action) => {
     case (DECREASE_ACTIONS): {
       return Object.assign({}, prevState, {
         actions: prevState.actions - 1
+      });
+    }
+    case (RESET_PLAYER): {
+      return Object.assign({}, prevState, {
+        actions: 15
       });
     }
     default:

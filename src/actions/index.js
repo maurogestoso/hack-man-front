@@ -132,6 +132,7 @@ export const signUp = (user) => {
       .then(req => {
         dispatch(receiveUser(req.data));
         dispatch(fetchAvailableGames());
+        dispatch({type: types.RESET_PLAYER});
         browserHistory.push('/join');
       })
       .catch(err => {
@@ -192,6 +193,7 @@ export const signIn = (username) => {
     return axios.get(url)
       .then(res => {
         dispatch(receiveUser(res.data));
+        dispatch({type: types.RESET_PLAYER});
         if (res.data.gameId) {
           dispatch(fetchGame(res.data.gameId, username));
         }
